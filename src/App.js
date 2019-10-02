@@ -1,150 +1,142 @@
-import React, {Component} from 'react';
+import React from 'react';
+import ReactAnimatedWeather from 'react-animated-weather';
+import Form from "./components/Form";
 import './App.css';
 
 
-class App extends Component{
+const WEATHER_API_KEY = '58c64518fa7045c00badb75ac958b613';
+const LONGLAT_API_KEY = 'VTzl7xjzhtg6Zxca44QS771qUuQddvN7';
+class App extends React.Component{
 
-  constructor(props){
-    super(props);
-    this.state = {
+    state = {
       data: [],
-      isLoaded: false,
+      longlatdata: [],
       middayWeather: [],
+      ls: ""
     }
-
-
-  }
-
-
 
   //call api and store response in data, and check if response loaded or not.
-  componentDidMount(){
-    fetch('http://api.openweathermap.org/data/2.5/forecast?q=Minneapolis,us&units=imperial&APPID=09110e603c1d5c272f94f64305c09436')
-      .then(res => res.json())
-      .then(json => {
-        this.setState({
-          isLoaded: true,
-          data: json,
-        })
-      });
+  getWeatherData = async (e) =>{
+    e.preventDefault();
+    var {longlatdata,data} = this.state;
+    const city = e.target.elements.city.value;
+    const country = e.target.elements.country.value;
+    const state = e.target.elements.state.value;
+
+    const longlat_api = await fetch(`http://www.mapquestapi.com/geocoding/v1/address?key=${LONGLAT_API_KEY}&location=${city},${state},${country}`);
+    longlatdata = await longlat_api.json();
+    const lat = longlatdata.results[0].locations[0].latLng.lat;
+    const lng = longlatdata.results[0].locations[0].latLng.lng;
+    const weather_api = await fetch(`https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/${WEATHER_API_KEY}/${lat},${lng}?exclude=currently,minutely,hourly`);
+    data = await weather_api.json();
+    
+    this.setState({middayWeather: []});
+    return (this.fiveDayForecast(data));
+         
   }
 
-  //Depending on weather what contact info should be returned
-  bestContact(temperature,type){
-    if(type === 'Clear' && temperature > 75){
-      return 'text message';
-    }else if(temperature >= 55 && temperature <= 75 && type !== 'Rain'){
-      return 'email';
-    }else if(temperature < 55 || type === 'Rain'){
-      return 'phone call';
-    }
-
-  }
 
   //Loop through the data, take 3rd timestamp in each day and grab necessary information from api response and added it to middayWeather array.
-  dataCleanUp(data){
-    var { isLoaded,data,middayWeather} = this.state;
-    for(let i = 2; i < data.list.length; i+=8){
-      const today = new days(data.list[i].dt_txt.split(' ')[0],
-                              data.list[i].weather[0].icon,
-                              data.list[i].main.temp, 
-                              this.bestContact(data.list[i].main.temp,data.list[i].weather[0].main));
-      
+  fiveDayForecast(data){
+    var {middayWeather} = this.state;
+    let list;
+    //console.log(data);
+    for(let i = 0; i < data.daily.data.length-3; i++){
+      const today = new days(data.daily.data[i].time,
+                              data.daily.data[i].icon,
+                              data.daily.data[i].temperatureHigh,
+                              data.daily.data[i].temperatureLow,
+                              data.daily.data[i].summary);
+
       middayWeather.push(today);
       
+      list = middayWeather.map(today =>{
+        return <div>
+        <div className = "day">
+          <div className = "date">
+          <h2>{this.convertUnixTime(today.day)}</h2>
+          </div>
+          <div className = "summary">
+           <p>{today.summary}</p>
+          </div>
+          <div className = 'image'>
+            <ReactAnimatedWeather 
+              color='orange' 
+              icon= {today.img.replace(/-/g,'_').toUpperCase()} 
+              autoplay={true}
+              size = {64}
+            />
+          </div>
+          <div className = 'temp'>
+            {Math.round(today.tempHigh)} <span>&#176;</span> / {Math.round(today.tempLow)} <span>&#176;</span>
+          </div>
+        </div>
+      </div>
+      })
     }
-
+    this.setState({ls: list})
   }
+
+
+  
+  convertUnixTime(unixDate){
+
+    // Unixtimestamp
+    var unixtimestamp = unixDate;
+   
+    // Months array
+    var months_arr = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+   
+    // Convert timestamp to milliseconds
+    var date = new Date(unixtimestamp*1000);
+   
+    // Year
+    var year = date.getFullYear();
+   
+    // Month
+    var month = months_arr[date.getMonth()];
+   
+    // Day
+    var day = date.getDate();
+      
+    // Display date time in MM-dd-yyyyformat
+    var convdataTime = month+'-'+day+'-'+year;
+    
+    return convdataTime;
+    
+   }
 
 
   render(){
-
-    var { isLoaded,data,middayWeather} = this.state;
-
-    if(!isLoaded){
-      return <div>Loading....</div>
-    }else{
-      this.dataCleanUp(data);
       
       return(
-//Display the 5 days w/ date, img of weather, temp, and best contact (having issues with for loop so did it static)
-        <div className="App">
-          <h2>5 Day Forecast</h2>
-            <div className = "day">
-              {middayWeather[0].day}
-              <div className = 'image'>
-              <img src={'/img/' + middayWeather[0].img + '.png'}/>
-              </div>
-              <div className = 'temp'>
-              {middayWeather[0].temp} <span>&#8457;</span>
-              </div>
-              <div className = 'contact'>
-                <h6>Best way to reach customers is {middayWeather[0].cont}</h6>
-              </div>
-            </div>
-            <div className = "day">
-              {middayWeather[1].day}
-              <div className = 'image'>
-              <img src={'/img/' + middayWeather[1].img + '.png'}/>
-              </div>
-              <div className = 'temp'>
-              {middayWeather[1].temp} <span>&#8457;</span>
-              </div>
-              <div className = 'contact'>
-                <h6>Best way to reach customers is {middayWeather[1].cont}</h6>
-              </div>
-            </div>
-            <div className = "day">
-              {middayWeather[2].day}
-              <div className = 'image'>
-              <img src={'/img/' + middayWeather[2].img + '.png'}/>
-              </div>
-              <div className = 'temp'>
-              {middayWeather[2].temp} <span>&#8457;</span>
-              </div>
-              <div className = 'contact'>
-                <h6>Best way to reach customers is {middayWeather[2].cont}</h6>
-              </div>
-            </div>
-            <div className = "day">
-              {middayWeather[3].day}
-              <div className = 'image'>
-              <img src={'/img/' + middayWeather[3].img + '.png'}/>
-              </div>
-              <div className = 'temp'>
-              {middayWeather[3].temp} <span>&#8457;</span>
-              </div>
-              <div className = 'contact'>
-                <h6>Best way to reach customers is {middayWeather[3].cont}</h6>
-              </div>
-            </div>
-            <div className = "day">
-              {middayWeather[4].day}
-              <div className = 'image'>
-              <img src={'/img/' + middayWeather[4].img + '.png'}/>
-              </div>
-              <div className = 'temp'>
-              {middayWeather[4].temp} <span>&#8457;</span>
-              </div>
-              <div className = 'contact'>
-                <h6>Best way to reach customers is {middayWeather[4].cont}</h6>
-              </div>
-            </div>
-        </div>
         
+          <div>
+            <h1>5 Day Forecast </h1>
+            <Form getWeatherData={this.getWeatherData}/>
+            <div className = 'forecast'>
+              
+              {this.state.ls}
+            </div>
+            
+            
+          </div>
+      
       );
     }
-  } 
 }
+
 
 //constructor class for days
 class days {
-  constructor(day, img, temp, cont) {
+  constructor(day, img, tempHigh,tempLow,summary) {
     this.day = day;
     this.img = img;
-    this.temp = temp;
-    this.cont = cont;
+    this.tempHigh = tempHigh;
+    this.tempLow = tempLow;
+    this.summary = summary;
   }
 }
+
 
 export default App;
