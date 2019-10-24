@@ -2,8 +2,10 @@
   "name": "weatherchallenge",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://abdi-sheikh.github.io/weatherchallenge/",
   "dependencies": {
     "bootstrap": "^4.3.1",
+    "gh-pages": "^2.1.1",
     "mdbreact": "^4.21.0",
     "react": "^16.9.0",
     "react-animated-weather": "^3.0.0",
