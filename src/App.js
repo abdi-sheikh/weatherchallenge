@@ -3,9 +3,11 @@ import ReactAnimatedWeather from 'react-animated-weather';
 import Form from "./components/Form";
 import './App.css';
 
+console.log(process.env.REACT_APP_WEATHER_API_KEY);
+console.log(process.env.REACT_APP_LONGLAT_API_KEY);
 
-const WEATHER_API = `${process.env.WEATHER_API_KEY}`;
-const LONGLAT_API = `${process.env.LONGLAT_API_KEY}`;
+const WEATHER_API = `${process.env.REACT_APP_WEATHER_API_KEY}`;
+const LONGLAT_API = `${process.env.REACT_APP_LONGLAT_API_KEY}`;
 class App extends React.Component{
 
     state = {
@@ -22,7 +24,7 @@ class App extends React.Component{
     const city = e.target.elements.city.value;
     const country = e.target.elements.country.value;
     const state = e.target.elements.state.value;
-
+ 
     const longlat_api = await fetch(`http://www.mapquestapi.com/geocoding/v1/address?key=${LONGLAT_API}&location=${city},${state},${country}`);
     longlatdata = await longlat_api.json();
     const lat = longlatdata.results[0].locations[0].latLng.lat;
