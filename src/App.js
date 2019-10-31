@@ -22,7 +22,7 @@ class App extends React.Component{
     const country = e.target.elements.country.value;
     const state = e.target.elements.state.value;
  
-    const longlat_api = await fetch(`http://www.mapquestapi.com/geocoding/v1/address?key=${LONGLAT_API}&location=${city},${state},${country}`);
+    const longlat_api = await fetch(`https://www.mapquestapi.com/geocoding/v1/address?key=${LONGLAT_API}&location=${city},${state},${country}`);
     longlatdata = await longlat_api.json();
     const lat = longlatdata.results[0].locations[0].latLng.lat;
     const lng = longlatdata.results[0].locations[0].latLng.lng;
