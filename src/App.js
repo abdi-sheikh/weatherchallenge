@@ -4,8 +4,8 @@ import Form from "./components/Form";
 import './App.css';
 
 
-const WEATHER_API = process.env.WEATHER_API_KEY;
-const LONGLAT_API = process.env.LONGLAT_API_KEY;
+const WEATHER_API = `${process.env.WEATHER_API_KEY}`;
+const LONGLAT_API = `${process.env.LONGLAT_API_KEY}`;
 class App extends React.Component{
 
     state = {
