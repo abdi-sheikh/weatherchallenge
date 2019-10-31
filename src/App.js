@@ -3,9 +3,6 @@ import ReactAnimatedWeather from 'react-animated-weather';
 import Form from "./components/Form";
 import './App.css';
 
-console.log(process.env.REACT_APP_WEATHER_API_KEY);
-console.log(process.env.REACT_APP_LONGLAT_API_KEY);
-
 const WEATHER_API = `${process.env.REACT_APP_WEATHER_API_KEY}`;
 const LONGLAT_API = `${process.env.REACT_APP_LONGLAT_API_KEY}`;
 class App extends React.Component{
