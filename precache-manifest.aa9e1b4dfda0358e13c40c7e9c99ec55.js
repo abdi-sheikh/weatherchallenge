@@ -1,27 +1,31 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "28121c1ac541139e2c7a437f7c9c1968",
+    "revision": "2c321f16bdce59313ace16797dbf8d12",
     "url": "/weatherchallenge/index.html"
   },
   {
-    "revision": "e34c6730e6d7e849f1b7",
-    "url": "/weatherchallenge/static/css/2.42d6d47f.chunk.css"
+    "revision": "5213e09597af043de8b2",
+    "url": "/weatherchallenge/static/css/2.277f34ad.chunk.css"
   },
   {
-    "revision": "eaac2b8dc47a1d8e7984",
-    "url": "/weatherchallenge/static/css/main.7db20e94.chunk.css"
+    "revision": "6f6955f5f88eef2bb467",
+    "url": "/weatherchallenge/static/css/main.28fae834.chunk.css"
   },
   {
-    "revision": "e34c6730e6d7e849f1b7",
-    "url": "/weatherchallenge/static/js/2.7c1245e3.chunk.js"
+    "revision": "5213e09597af043de8b2",
+    "url": "/weatherchallenge/static/js/2.b6bafc54.chunk.js"
   },
   {
-    "revision": "eaac2b8dc47a1d8e7984",
-    "url": "/weatherchallenge/static/js/main.b66f206f.chunk.js"
+    "revision": "e88a3e95b5364d46e95b35ae8c0dc27d",
+    "url": "/weatherchallenge/static/js/2.b6bafc54.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "f188c1d904ae308e60b2",
-    "url": "/weatherchallenge/static/js/runtime~main.68e50d99.js"
+    "revision": "6f6955f5f88eef2bb467",
+    "url": "/weatherchallenge/static/js/main.8436d08e.chunk.js"
+  },
+  {
+    "revision": "a69e9355cc767b5c0623",
+    "url": "/weatherchallenge/static/js/runtime-main.8e125ae9.js"
   },
   {
     "revision": "39b2c3031be6b4ea96e2e3e95d307814",

@@ -1,20 +1,28 @@
 {
   "files": {
-    "main.css": "/weatherchallenge/static/css/main.7db20e94.chunk.css",
-    "main.js": "/weatherchallenge/static/js/main.b66f206f.chunk.js",
-    "main.js.map": "/weatherchallenge/static/js/main.b66f206f.chunk.js.map",
-    "runtime~main.js": "/weatherchallenge/static/js/runtime~main.68e50d99.js",
-    "runtime~main.js.map": "/weatherchallenge/static/js/runtime~main.68e50d99.js.map",
-    "static/css/2.42d6d47f.chunk.css": "/weatherchallenge/static/css/2.42d6d47f.chunk.css",
-    "static/js/2.7c1245e3.chunk.js": "/weatherchallenge/static/js/2.7c1245e3.chunk.js",
-    "static/js/2.7c1245e3.chunk.js.map": "/weatherchallenge/static/js/2.7c1245e3.chunk.js.map",
+    "main.css": "/weatherchallenge/static/css/main.28fae834.chunk.css",
+    "main.js": "/weatherchallenge/static/js/main.8436d08e.chunk.js",
+    "main.js.map": "/weatherchallenge/static/js/main.8436d08e.chunk.js.map",
+    "runtime-main.js": "/weatherchallenge/static/js/runtime-main.8e125ae9.js",
+    "runtime-main.js.map": "/weatherchallenge/static/js/runtime-main.8e125ae9.js.map",
+    "static/css/2.277f34ad.chunk.css": "/weatherchallenge/static/css/2.277f34ad.chunk.css",
+    "static/js/2.b6bafc54.chunk.js": "/weatherchallenge/static/js/2.b6bafc54.chunk.js",
+    "static/js/2.b6bafc54.chunk.js.map": "/weatherchallenge/static/js/2.b6bafc54.chunk.js.map",
     "index.html": "/weatherchallenge/index.html",
-    "precache-manifest.203254492841680ca21c5bbc15c4bf5e.js": "/weatherchallenge/precache-manifest.203254492841680ca21c5bbc15c4bf5e.js",
+    "precache-manifest.aa9e1b4dfda0358e13c40c7e9c99ec55.js": "/weatherchallenge/precache-manifest.aa9e1b4dfda0358e13c40c7e9c99ec55.js",
     "service-worker.js": "/weatherchallenge/service-worker.js",
-    "static/css/2.42d6d47f.chunk.css.map": "/weatherchallenge/static/css/2.42d6d47f.chunk.css.map",
-    "static/css/main.7db20e94.chunk.css.map": "/weatherchallenge/static/css/main.7db20e94.chunk.css.map",
+    "static/css/2.277f34ad.chunk.css.map": "/weatherchallenge/static/css/2.277f34ad.chunk.css.map",
+    "static/css/main.28fae834.chunk.css.map": "/weatherchallenge/static/css/main.28fae834.chunk.css.map",
+    "static/js/2.b6bafc54.chunk.js.LICENSE.txt": "/weatherchallenge/static/js/2.b6bafc54.chunk.js.LICENSE.txt",
     "static/media/mdb.css": "/weatherchallenge/static/media/arrow_right.8ef6a08c.svg",
     "static/media/all.min.css": "/weatherchallenge/static/media/fa-solid-900.c2801fb4.svg",
     "static/media/App.css": "/weatherchallenge/static/media/weatherbg.d6dac1c0.jpg"
-  }
+  },
+  "entrypoints": [
+    "static/js/runtime-main.8e125ae9.js",
+    "static/css/2.277f34ad.chunk.css",
+    "static/js/2.b6bafc54.chunk.js",
+    "static/css/main.28fae834.chunk.css",
+    "static/js/main.8436d08e.chunk.js"
+  ]
 }
